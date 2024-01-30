@@ -5,3 +5,16 @@
 .peding-item {
     color: red;
 }
+
+.title {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.text-field {
+    color: #000000;
+    font-size: 32px;
+    font-family: monospace;
+    resize: none;
+}
+

@@ -1,21 +1,31 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
-import Homepage from './pages/Homepage';
-import ProductPage from './pages/ProductPage';
-import ProfilePage from './pages/ProfilePage';
-import NotFound from './pages/NotFound';
+import 'milligram'
+import './assets/css/style.css'
 
 const App = () => {
+
+  let [ip,setIp]=useState();
+  let [ipAddress,setIpAddress]=useState("");
+
+  const findIp = async () => {
+    try {
+    const response = await fetch(ip);
+    const data = await response.text();
+    setIpAddress(data);
+    } catch (error) {
+      alert("Failed to fetch IP Address");
+    }
+  }
+
   return(
     <div>
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<Homepage/>}/> 
-          <Route path="/product/:id/:name" element={<ProductPage/>}/> 
-          <Route path="/profile/:facebookId/:youtubeId " element={<ProfilePage/>}/> 
-          <Route path="*" element={<NotFound/>}/> 
-        </Routes>
-      </HashRouter>
+      <h1 className='title'>IP Finder</h1>
+      <div className='text-field'>
+        <input onChange={(e)=>setIp(e.target.value)} placeholder="Enter Domain Name" />
+      </div>
+      <button onClick={findIp} className='search-button'>Search</button>
+      <h1>IP Address : {ipAddress}</h1>
+      
     </div>
   );
 };
